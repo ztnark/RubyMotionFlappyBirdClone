@@ -1,6 +1,6 @@
 class EFCGameScene < SKScene
 	def initWithSize(size)
-		if self == super.initWithSize(size)
+		if self == super
 			#setup your scene here
 		end
 		return self

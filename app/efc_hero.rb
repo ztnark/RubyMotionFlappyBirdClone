@@ -23,15 +23,13 @@ class EFCHero < SKSpriteNode
 	end
 
 	def createNodeOn(parent)
-		hero = EFCHero.new
-		parent.addChild(hero)
-		hero
+		# hero = EFCHero.new
 	end
 
 	def createSpriteOn(parent)
-		hero = self.createNodeOn(parent)
-		hero.physicsBody = nil
-		hero
+		# hero = self.createNodeOn(parent)
+		# hero.physicsBody = nil
+		# hero
 	end
 
 	def update
