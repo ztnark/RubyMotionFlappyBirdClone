@@ -1,5 +1,4 @@
-#might need to inherit from SKPhysicsContactDelege
-class EFCGameScene
+class EFCGameScene < SKScene
 	def initWithSize(size)
 		if self == super.initWithSize(size)
 			#setup your scene here
@@ -80,12 +79,12 @@ class EFCGameScene
 	def didBeginContact(contact)
 		#Not sure what this is
 		collision = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
-		if collision == (heroType | pipeType)
+		if collision == (HEROTYPE | PIPETYPE)
 			self.hero.goDown()
 			self.runAction(self.terrainSound, completion: lambda do
 				self.die
 			end)
-		elsif collision == (heroType | terrainType)
+		elsif collision == (HEROTYPE | TERRAINTYPE)
 			self.runAction(self.terrainSound, completion: lambda do
 				self.die
 			end)
@@ -94,7 +93,7 @@ class EFCGameScene
 
 	def didEndContact(contact)
 		collision = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
-		if collision == (heroType | holeType)
+		if collision == (HEROTYPE | HOLETYPE)
 			self.score++
 			self.runAction(self.pipeSound, completion: lambda do
 				self.renderScore

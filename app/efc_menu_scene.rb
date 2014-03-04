@@ -1,25 +1,26 @@
-class EFCMenuScene
+class EFCMenuScene < SKScene
 	def didMoveToView(view)
-		super.didMoveToView(view)
+		# super.didMoveToView(view)
+		super
 		self.setup
 	end
 
 	def setup
 		self.createWorld
-		self.createHero
-		EFCTerrain.addNewNodeTo(self)
+		# self.createHero
+		EFCTerrain.alloc.init.addNewNodeTo(self)
 		self.createStartButton
 	end
 
 	def createStartButton
-		location = CGPointMake(CGRectGetMidX(self.view.frame),CGRectGetMidY(self.view.frame + 150))
-		self.startButton = SKSpriteNode.spriteNodeWithImageNamed("start")
-		self.startButton.position = location
-		self.addChild(self.startButton)
+		location = CGPointMake(CGRectGetMidX(self.view.frame) + 160,CGRectGetMidY(self.view.frame) + 150)
+		startButton = SKSpriteNode.spriteNodeWithImageNamed("start.png")
+		startButton.position = location
+		self.addChild(startButton)
 	end
 
 	def createWorld
-		backgroundTexture = SKTexture.textureWithImageNamed("background")
+		backgroundTexture = SKTexture.textureWithImageNamed("background.png")
 		background = SKSpriteNode.spriteNodeWithTexture(backgroundTexture, size: self.view.frame.size)
 		background.position = CGPointMake(CGRectGetMidX(self.view.frame),CGRectGetMidY(self.view.frame))
 		self.addChild(background)
@@ -28,7 +29,7 @@ class EFCMenuScene
 	end
 
 	def createHero
-		hero = EFCHero.createSpriteOn(self)
+		hero = EFCHero.alloc.init.createSpriteOn(self)
 		hero.position = CGPointMake(CGRectGetMidX(self.view.frame),CGRectGetMidY(self.view.frame))
 	end
 

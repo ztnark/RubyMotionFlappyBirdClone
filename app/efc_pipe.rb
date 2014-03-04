@@ -16,9 +16,9 @@ class EFCPipe
 		pipeNode.zPosition = 0
 		pipeNode.physicsBody = SKPhysicsBody.bodyWithRectangleOfSize(pipeNode.size)
 		pipeNode.physicsBody.dynamic = false
-		pipeNode.physicsBody.collisionBitMask = heroType
-		pipeNode.physicsBody.categoryBitMask = pipeType
-		pipeNode.physicsBody.contactTestBitMask = heroType
+		pipeNode.physicsBody.collisionBitMask = HEROTYPE
+		pipeNode.physicsBody.categoryBitMask = PIPETYPE
+		pipeNode.physicsBody.contactTestBitMask = HEROTYPE
 		self.animate(pipeNode)
 		pipeNode
 	end
@@ -31,7 +31,7 @@ class EFCPipe
 		holeInPipe.physicsBody = SKPhysicsBody.bodyWithRectangleOfSize(holeSize)
 		holeInPipe.physicsBody.dynamic = false
 		holeInPipe.physicsBody.collisionBitMask = 0x00000000
-		holeInPipe.physicsBody.categoryBitMask = holeType
+		holeInPipe.physicsBody.categoryBitMask = HOLETYPE
 		holeInPipe.physicsBody.contactTestBitMask = 0x00000000
 		self.animate(holeInPipe)
 		holeInPipe

@@ -1,6 +1,6 @@
 class EFCTerrain
 	def addNewNodeTo(parentNode)
-		terrainTexture = SKTexture.textureWithImageNamed("terrain")
+		terrainTexture = SKTexture.textureWithImageNamed("terrain.png")
 		node1 = SKSpriteNode.spriteNodeWithTexture(terrainTexture)
 		node1.anchorPoint = CGPointMake(0,1)
 		node1.position = CGPointMake(0,0)
@@ -24,8 +24,8 @@ class EFCTerrain
 		terrainBody.physicsBody.dynamic = false
 		terrainBody.physicsBody.affectedByGravity = false
 		terrainBody.physicsBody.collisionBitMask = 0
-		terrainBody.physicsBody.categoryBitMask = terrainType
-		terrainBody.physicsBody.contactTestBitMask = heroType
+		terrainBody.physicsBody.categoryBitMask = TERRAINTYPE
+		terrainBody.physicsBody.contactTestBitMask = HEROTYPE
 		parentNode.addChild(terrainBody)
 
 		terrain.runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.moveToX(-320, duration: 5.0),SKAction.moveToX(0,duration: 0)])))

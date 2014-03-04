@@ -1,15 +1,15 @@
-class EFCViewControlled
+class EFCViewController < UIViewController
 	def viewDidLoad
-		super.viewDidLoad
+		super
 
-		skView = self.view
-		skView.showFPS = true
-		skView.showNodeCount = true
+		self.view = SKView.alloc.init
+		self.view.showsFPS = true
+		self.view.showsNodeCount = true
 
-		scene = EFCMenuScene.sceneWithSize(skView.bounds.size)
+		scene = EFCMenuScene.alloc.initWithSize(UIScreen.mainScreen.bounds.size)
 		scene.scaleMode = SKSceneScaleModeAspectFill
 
-		skView.presentScene(scene)
+		self.view.presentScene(scene)
 	end
 
 	def shouldAutorotate
