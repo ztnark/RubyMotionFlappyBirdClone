@@ -8,7 +8,7 @@ class EFCMenuScene < SKScene
 	def setup
 		self.createWorld
 		self.createHero
-		EFCTerrain.alloc.init.addNewNodeTo(self)
+		EFCTerrain.addNewNodeTo(self)
 		self.createStartButton
 	end
 
@@ -29,10 +29,8 @@ class EFCMenuScene < SKScene
 	end
 
 	def createHero
-		hero = EFCHero.alloc.init
-		hero.physicsBody = nil
+		hero = EFCHero.createSpriteOn(self)
 		hero.position = CGPointMake(CGRectGetMidX(self.view.frame),CGRectGetMidY(self.view.frame))
-		self.addChild(hero)
 	end
 
 	def touchesBegan(touches, withEvent: event)

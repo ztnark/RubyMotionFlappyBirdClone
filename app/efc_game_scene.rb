@@ -3,17 +3,19 @@ class EFCGameScene < SKScene
 		if self == super
 			#setup your scene here
 		end
-		return self
+		@score = 0
+		self.setup
+		self
 	end
 
 	def touchesBegan(touches,withEvent: event)
-		self.hero(flap)
+		@hero.flap
 	end
 
-	def update(currentTime)
-		super.didMoveToView(view)
-		self.setup
-	end
+	# def update(currentTime)
+	# 	super.didMoveToView(view)
+	# 	self.setup
+	# end
 
 	def setup
 		self.preloadSounds
@@ -26,38 +28,43 @@ class EFCGameScene < SKScene
 
 	def preloadSounds
 		#double check true vs YES
-		self.pipeSound = SKAction.playSoundFileNamed("pipe.mp3", waitForCompletion: true)
-		self.terrainSound = SKAction.playSoundFileNamed("punch.mp3", waitForCompletion: true)
+		@pipeSound = SKAction.playSoundFileNamed("pipe.mp3", waitForCompletion: true)
+		@terrainSound = SKAction.playSoundFileNamed("punch.mp3", waitForCompletion: true)
 	end
 
 	def createScoreLabel
-		self.scoreLabel = SKLableNode.alloc.initWithFontNamed("Helvetica")
-		self.scoreLabel(setPosition(CGPointMake(self.size.width/2, self.size.height-50)))
+		@scoreLabel = SKLabelNode.alloc.initWithFontNamed("Helvetica")
+		@scoreLabel.setPosition(CGPointMake(self.size.width/2, self.size.height-50))
 		#double check
-		self.scoreLabel(setText(stringWithFormat("%@", numberWithInteger: self.score)))
-		self.addChild(self.scoreLabel)
+		# @scoreLabel.setText(NSString.stringWithFormat("%@"), numberWithInteger: @score)
+		# self.addChild(@scoreLabel)
 	end
 
 	def createWorld
-		backgroundTexture = SKtexture.textureWithImageNamed("background")
-		background = SKSpriteNode.spriteNodeWithTexture(backgroundTexture, size: self.view.frame)
-		background.position = CGPointMake(CGRectGetMidX(self.view.frame),CGRectGetMidY(self.view.frame))
+		backgroundTexture = SKTexture.textureWithImageNamed("background.png")
+		background = SKSpriteNode.spriteNodeWithTexture(backgroundTexture, size: UIScreen.mainScreen.bounds.size)
+		background.position = CGPointMake(CGRectGetMidX(UIScreen.mainScreen.bounds),CGRectGetMidY(UIScreen.mainScreen.bounds))
 		self.addChild(background)
 
-		self.scaleMode = SKScaleModeAspectFit
+		self.scaleMode = SKSceneScaleModeAspectFit
 		self.physicsWorld.contactDelegate = self
 		self.physicsWorld.gravity = CGVectorMake(0,-3);
 	end
 
 	def createHero
+		@hero = EFCHero.createNodeOn(self)
+		@hero.position = CGPointMake(50,450)
+	end
+
+	def createTerrain
 		EFCTerrain.addNewNodeTo(self)
 	end
 
 	#pragma mark -Actions
 
-	def scedulePipe
-		self.pipeTimer = NSTimer.scheduledTimerWithTImeInterval(4.0, target: self, action: 'addPipe', userInfo: nil, repeats: true)
-		self.addPipe(nil)
+	def schedulePipe
+		# @pipeTimer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: :addPipe, userInfo: nil, repeats: true)
+		# self.addPipe(nil)
 	end
 
 	def addPipe(timer)
@@ -65,7 +72,7 @@ class EFCGameScene < SKScene
 	end
 
 	def die
-		self.pipeTimer.invalidate
+		@pipeTimer.invalidate
 
 		reveal = SKTransition(fadeWithDuration(0.5))
 		newScene = EFCMenuScene.alloc.initWithSize(self.size)
@@ -73,19 +80,19 @@ class EFCGameScene < SKScene
 	end
 
 	def renderScore
-		self.scoreLabel.setText(stringWithFormat"%d", self.score)
+		@scoreLabel.setText(stringWithFormat"%d", self.score)
 	end
 
 	def didBeginContact(contact)
 		#Not sure what this is
 		collision = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
 		if collision == (HEROTYPE | PIPETYPE)
-			self.hero.goDown()
-			self.runAction(self.terrainSound, completion: lambda do
+			@hero.goDown()
+			self.runAction(@terrainSound, completion: lambda do
 				self.die
 			end)
 		elsif collision == (HEROTYPE | TERRAINTYPE)
-			self.runAction(self.terrainSound, completion: lambda do
+			self.runAction(@terrainSound, completion: lambda do
 				self.die
 			end)
 		end

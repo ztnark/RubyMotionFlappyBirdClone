@@ -1,5 +1,5 @@
 class EFCTerrain
-	def addNewNodeTo(parentNode)
+	def self.addNewNodeTo(parentNode)
 		terrainTexture = SKTexture.textureWithImageNamed("terrain.png")
 		node1 = SKSpriteNode.spriteNodeWithTexture(terrainTexture)
 		node1.anchorPoint = CGPointMake(0,1)

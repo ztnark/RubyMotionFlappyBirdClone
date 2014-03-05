@@ -1,8 +1,8 @@
 class EFCPipe
 
-	def addNewNodeTo(parentNode)
-		CGFloat.offset = 620
-		CGFloat.startY = -50.0 + rand(4) * 60.0
+	def self.addNewNodeTo(parentNode)
+		offset = 620
+		startY = -50.0 + rand(4) * 60.0
 
 		parentNode.addChild(self, createPipeAtY: (startY + offset), isTopPipe: true)
 		parentNode.addChild(self, createPipeAtY: (startY+540/2.0+35))
@@ -10,7 +10,7 @@ class EFCPipe
 	end
 
 	def createPipeAtY(startY, isTopPipe: isTopPipe)
-		pipeNode = SKSpriteNode.spriteNodeWithImageNamed("pipe")
+		pipeNode = SKSpriteNode.spriteNodeWithImageNamed("pipe.png")
 		pipeNode.position = CGPointMake(320, startY)
 		pipeNode.yScale = isTopPipe ? 1.0 : -1.0
 		pipeNode.zPosition = 0
