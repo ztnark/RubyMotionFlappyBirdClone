@@ -1,15 +1,18 @@
+FINAL_POSITION = -50
+DURATION = 6
+
 class EFCPipe
 
 	def self.addNewNodeTo(parentNode)
 		offset = 620
 		startY = -50.0 + rand(4) * 60.0
 
-		parentNode.addChild(self, createPipeAtY: (startY + offset), isTopPipe: true)
-		parentNode.addChild(self, createPipeAtY: (startY+540/2.0+35))
-		parentNode.addChild(self, createPipeAtY: startY, isTopPipe: false)
+		parentNode.addChild(self.createPipeAtY(startY + offset, true))
+		parentNode.addChild(self.createHoleAtY(startY+540/2.0+35))
+		parentNode.addChild(self.createPipeAtY(startY, false))
 	end
 
-	def createPipeAtY(startY, isTopPipe: isTopPipe)
+	def self.createPipeAtY(startY, isTopPipe)
 		pipeNode = SKSpriteNode.spriteNodeWithImageNamed("pipe.png")
 		pipeNode.position = CGPointMake(320, startY)
 		pipeNode.yScale = isTopPipe ? 1.0 : -1.0
@@ -23,9 +26,9 @@ class EFCPipe
 		pipeNode
 	end
 
-	def createHoleAtY(startY)
+	def self.createHoleAtY(startY)
 		holeSize = CGSizeMake(52,85)
-		holeInPipe = SKSpriteNode.pipeNode
+		holeInPipe = SKSpriteNode.node
 		holeInPipe.position = CGPointMake(320,startY)
 		holeInPipe.zPosition = 0
 		holeInPipe.physicsBody = SKPhysicsBody.bodyWithRectangleOfSize(holeSize)
@@ -37,8 +40,8 @@ class EFCPipe
 		holeInPipe
 	end
 
-	def animate(node)
-		node.runAction(SKAction.sequence [SKAction.moveToX(finalPosition, duration: duration),
+	def self.animate(node)
+		node.runAction(SKAction.sequence [SKAction.moveToX(FINAL_POSITION, duration: DURATION),
 										  SKAction.removeFromParent])
 	end
 end

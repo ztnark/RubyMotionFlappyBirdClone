@@ -63,11 +63,11 @@ class EFCGameScene < SKScene
 	#pragma mark -Actions
 
 	def schedulePipe
-		@pipeTimer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, action: :addPipe, userInfo: nil, repeats: true)
-		self.addPipe(nil)
+		@pipeTimer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: :addPipe, userInfo: nil, repeats: true)
+		self.addPipe
 	end
 
-	def addPipe(timer)
+	def addPipe
 		EFCPipe.addNewNodeTo(self)
 	end
 

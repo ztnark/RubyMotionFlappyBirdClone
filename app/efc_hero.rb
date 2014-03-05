@@ -46,7 +46,7 @@ class EFCHero < SKSpriteNode
 
 	def goDown
 		#double check this
-		@self.physicsBody(applyImpulse(CGVectorMake(0,-10))) 
+		@self.physicsBody.applyImpulse(CGVectorMake(0,-10))
 	end
 
 	def flap
