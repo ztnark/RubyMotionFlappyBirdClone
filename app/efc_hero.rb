@@ -51,7 +51,7 @@ class EFCHero < SKSpriteNode
 
 	def flap
 		@self.physicsBody.velocity = CGVectorMake(0,0)
-		@self.physicsBody.applyImpulse(CGVectorMake(0,5))
+		@self.physicsBody.applyImpulse(CGVectorMake(0,6.25))
 	end
 end
 

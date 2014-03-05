@@ -63,7 +63,7 @@ class EFCGameScene < SKScene
 	#pragma mark -Actions
 
 	def schedulePipe
-		@pipeTimer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: :addPipe, userInfo: nil, repeats: true)
+		@pipeTimer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: :addPipe, userInfo: nil, repeats: true)
 		self.addPipe
 	end
 
@@ -74,7 +74,7 @@ class EFCGameScene < SKScene
 	def die
 		@pipeTimer.invalidate
 
-		reveal = SKTransition(fadeWithDuration(0.5))
+		reveal = SKTransition.fadeWithDuration(0.5)
 		newScene = EFCMenuScene.alloc.initWithSize(self.size)
 		self.scene.view.presentScene(newScene, transition: reveal)
 	end

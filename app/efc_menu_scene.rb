@@ -13,7 +13,7 @@ class EFCMenuScene < SKScene
 	end
 
 	def createStartButton
-		location = CGPointMake(CGRectGetMidX(self.view.frame) + 160,CGRectGetMidY(self.view.frame) + 150)
+		location = CGPointMake(CGRectGetMidX(UIScreen.mainScreen.bounds),CGRectGetMidY(UIScreen.mainScreen.bounds))
 		@startButton = SKSpriteNode.spriteNodeWithImageNamed("start.png")
 		@startButton.position = location
 		self.addChild(@startButton)
