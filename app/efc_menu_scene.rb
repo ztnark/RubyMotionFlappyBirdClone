@@ -20,9 +20,9 @@ class EFCMenuScene < SKScene
 	end
 
 	def createWorld
-		# backgroundTexture = SKTexture.textureWithImageNamed("background.png")
-		background = SKSpriteNode.spriteNodeWithImageNamed("background.png")
-		background.position = CGPointMake(150,300)
+		backgroundTexture = SKTexture.textureWithImageNamed("background.png")
+		background = SKSpriteNode.spriteNodeWithTexture(backgroundTexture, size: UIScreen.mainScreen.bounds.size)
+		background.position = CGPointMake(CGRectGetMidX(UIScreen.mainScreen.bounds),CGRectGetMidY(UIScreen.mainScreen.bounds))
 		self.addChild(background)
 
 		self.scaleMode = SKSceneScaleModeAspectFit
