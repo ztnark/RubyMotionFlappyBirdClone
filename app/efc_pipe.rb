@@ -13,7 +13,7 @@ class EFCPipe
 	end
 
 	def self.createPipeAtY(startY, isTopPipe)
-		pipeNode = SKSpriteNode.spriteNodeWithImageNamed("pipe.png")
+		pipeNode = SKSpriteNode.spriteNodeWithImageNamed("RedPipe4.png")
 		pipeNode.position = CGPointMake(320, startY)
 		pipeNode.yScale = isTopPipe ? 1.0 : -1.0
 		pipeNode.zPosition = 0
