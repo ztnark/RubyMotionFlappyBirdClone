@@ -36,12 +36,12 @@ class EFCGameScene < SKScene
 		@scoreLabel = SKLabelNode.alloc.initWithFontNamed("Helvetica")
 		@scoreLabel.setPosition(CGPointMake(self.size.width/2, self.size.height-50))
 		#double check
-		# @scoreLabel.setText(NSString.stringWithFormat("%@"), numberWithInteger: @score)
-		# self.addChild(@scoreLabel)
+		@scoreLabel.setText("Score: #{@score}")
+		self.addChild(@scoreLabel)
 	end
 
 	def createWorld
-		backgroundTexture = SKTexture.textureWithImageNamed("background.png")
+		backgroundTexture = SKTexture.textureWithImageNamed("Background5.png")
 		background = SKSpriteNode.spriteNodeWithTexture(backgroundTexture, size: UIScreen.mainScreen.bounds.size)
 		background.position = CGPointMake(CGRectGetMidX(UIScreen.mainScreen.bounds),CGRectGetMidY(UIScreen.mainScreen.bounds))
 		self.addChild(background)
@@ -80,7 +80,7 @@ class EFCGameScene < SKScene
 	end
 
 	def renderScore
-		@scoreLabel.setText(stringWithFormat"%d", self.score)
+		@scoreLabel.setText(stringWithFormat"%d", @score)
 	end
 
 	def didBeginContact(contact)
@@ -101,7 +101,8 @@ class EFCGameScene < SKScene
 	def didEndContact(contact)
 		collision = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
 		if collision == (HEROTYPE | HOLETYPE)
-			self.score++
+			p "score!"
+			@score++
 			self.runAction(self.pipeSound, completion: lambda do
 				self.renderScore
 			end)
