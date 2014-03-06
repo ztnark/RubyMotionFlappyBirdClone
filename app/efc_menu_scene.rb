@@ -7,9 +7,10 @@ class EFCMenuScene < SKScene
 
 	def setup
 		self.createWorld
-		self.createHero
+		# self.createHero
 		EFCTerrain.addNewNodeTo(self)
 		self.createStartButton
+		self.showHero
 	end
 
 	def createStartButton
@@ -31,6 +32,13 @@ class EFCMenuScene < SKScene
 	def createHero
 		hero = EFCHero.createSpriteOn(self)
 		hero.position = CGPointMake(CGRectGetMidX(self.view.frame),CGRectGetMidY(self.view.frame))
+	end
+
+	def showHero
+		rudyTexture = SKTexture.textureWithImageNamed("CircleRudy.png")
+		rudy = SKSpriteNode.spriteNodeWithTexture(rudyTexture, size: CGSizeMake(100,100))
+		rudy.position = CGPointMake(CGRectGetMidX(UIScreen.mainScreen.bounds),CGRectGetMidY(UIScreen.mainScreen.bounds) + 150 )
+		self.addChild(rudy)
 	end
 
 	def touchesBegan(touches, withEvent: event)

@@ -1,6 +1,6 @@
 class EFCHero < SKSpriteNode
 	def init
-		@self = super.initWithImageNamed('hero1.png')
+		@self = super.initWithImageNamed('CircRu.png')
 		if @self
 			@self.physicsBody = SKPhysicsBody.bodyWithRectangleOfSize(CGSizeMake(@self.size.width * 0.95, @self.size.height * 0.95))
 			@self.physicsBody.dynamic = true
@@ -14,10 +14,10 @@ class EFCHero < SKSpriteNode
 	end
 
 	def animate
-		animationFrames = [SKTexture.textureWithImageNamed("hero1.png"),SKTexture.textureWithImageNamed("hero2.png")]
+		animationFrames = [SKTexture.textureWithImageNamed("CircRu.png"),SKTexture.textureWithImageNamed("CircRu.png")]
 		@self.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures(
 															animationFrames,
-															timePerFrame: 0.1,
+															timePerFrame: 0.4,
 															resize: false,
 															restore: true)), withKey: "flyingHero")
 	end
@@ -51,7 +51,7 @@ class EFCHero < SKSpriteNode
 
 	def flap
 		@self.physicsBody.velocity = CGVectorMake(0,0)
-		@self.physicsBody.applyImpulse(CGVectorMake(0,6.25))
+		@self.physicsBody.applyImpulse(CGVectorMake(0,8.25))
 	end
 end
 
