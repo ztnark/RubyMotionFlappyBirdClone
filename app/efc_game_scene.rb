@@ -33,11 +33,10 @@ class EFCGameScene < SKScene
 	end
 
 	def createScoreLabel
-		@scoreLabel = SKLabelNode.alloc.initWithFontNamed("Futura-CondensedExtraBold")
+		@scoreLabel = SKLabelNode.alloc.initWithFontNamed("Helvetica")
 		@scoreLabel.setPosition(CGPointMake(self.size.width/2, self.size.height-50))
 		#double check
 		@scoreLabel.setText("SCORE: #{@score}")
-		@scoreLabel.zPosition = 5
 		self.addChild(@scoreLabel)
 	end
 
@@ -81,12 +80,11 @@ class EFCGameScene < SKScene
 	end
 
 	def renderScore
-		@scoreLabel.setText("Score: #{@score}")
+		@scoreLabel.setText(stringWithFormat"%d", @score)
 	end
 
 	def didBeginContact(contact)
 		#Not sure what this is
-
 		collision = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
 		if collision == (HEROTYPE | PIPETYPE)
 			@hero.goDown()
@@ -103,8 +101,11 @@ class EFCGameScene < SKScene
 	def didEndContact(contact)
 		collision = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
 		if collision == (HEROTYPE | HOLETYPE)
-			@score += 1
-			self.renderScore
+			p "score!"
+			@score++
+			self.runAction(@pipeSound, completion: lambda do
+				self.renderScore
+			end)
 		end
 	end
 end
