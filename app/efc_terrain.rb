@@ -20,7 +20,7 @@ class EFCTerrain
 
 		terrainBody = SKNode.node
 		terrainBody.position = CGPointMake(160.0, 35)
-		terrainBody.physicsBody = SKPhysicsBody.bodyWithRectangleOfSize(CGSizeMake(320,20))
+		terrainBody.physicsBody = SKPhysicsBody.bodyWithRectangleOfSize(CGSizeMake(640,60))
 		terrainBody.physicsBody.dynamic = false
 		terrainBody.physicsBody.affectedByGravity = false
 		terrainBody.physicsBody.collisionBitMask = 0

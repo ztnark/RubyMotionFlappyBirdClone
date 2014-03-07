@@ -10,7 +10,8 @@ end
 
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
-  app.name = 'RubyBird'
+  app.name = 'Rudy Hop'
   app.frameworks += ["SpriteKit"]
   app.delegate_class = 'EFCAppDelegate'
+  app.icons = ["RudyIcon.png"]
 end

@@ -33,9 +33,9 @@ class EFCPipe
 		holeInPipe.zPosition = 0
 		holeInPipe.physicsBody = SKPhysicsBody.bodyWithRectangleOfSize(holeSize)
 		holeInPipe.physicsBody.dynamic = false
-		holeInPipe.physicsBody.collisionBitMask = 0x00000000
+		holeInPipe.physicsBody.collisionBitMask = HEROTYPE
 		holeInPipe.physicsBody.categoryBitMask = HOLETYPE
-		holeInPipe.physicsBody.contactTestBitMask = 0x00000000
+		holeInPipe.physicsBody.contactTestBitMask = HEROTYPE
 		self.animate(holeInPipe)
 		holeInPipe
 	end
