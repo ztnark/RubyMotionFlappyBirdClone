@@ -24,12 +24,14 @@ Motion::Project::App.setup do |app|
   if env == 'adhoc'
   	app.identifier = 'com.alldigitalshop.hoppyrudy'
   	app.codesign_certificate = 'iPhone Distribution: Jeff Krantz (J2H4HN4995)'
-  	app.provisioning_profile = 'Desktop/RubyBird/Profile_4.mobileprovision'
+  	app.provisioning_profile = 'New_Prov.mobileprovision'
+  	app.entitlements['application-identifier'] = 'J2H4HN4995.com.alldigitalshop.hoppyrudy'
   	app.entitlements['get-task-allow'] = false
   else
   	app.identifier = 'com.alldigitalshop.hoppyrudy'
   	app.codesign_certificate = 'iPhone Distribution: Jeff Krantz (J2H4HN4995)'
-  	app.provisioning_profile = 'Profile_3.mobileprovision'
+  	app.provisioning_profile = 'New_Prov.mobileprovision'
+  	app.entitlements['application-identifier'] = 'J2H4HN4995.com.alldigitalshop.hoppyrudy'
   	app.entitlements['get-task-allow'] = false
   end
 

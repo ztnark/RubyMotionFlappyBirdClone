@@ -7,21 +7,35 @@ class EFCPipe
 		offset = 620
 		startY = -50.0 + rand(4) * 60.0
 
-		parentNode.addChild(self.createPipeAtY(startY + offset, true))
+		parentNode.addChild(self.createTopPipeAtY(startY + offset))
 		parentNode.addChild(self.createHoleAtY(startY+540/2.0+35))
-		parentNode.addChild(self.createPipeAtY(startY, false))
+		parentNode.addChild(self.createBottomPipeAtY(startY))
 	end
 
-	def self.createPipeAtY(startY, isTopPipe)
+	def self.createTopPipeAtY(startY)
 		pipeNode = SKSpriteNode.spriteNodeWithImageNamed("RedPipe4.png")
 		pipeNode.position = CGPointMake(320, startY)
-		pipeNode.yScale = isTopPipe ? 1.0 : -1.0
+		pipeNode.yScale = 1.0
 		pipeNode.zPosition = 0
 		pipeNode.physicsBody = SKPhysicsBody.bodyWithRectangleOfSize(pipeNode.size)
 		pipeNode.physicsBody.dynamic = false
 		pipeNode.physicsBody.collisionBitMask = HEROTYPE
 		pipeNode.physicsBody.categoryBitMask = PIPETYPE
 		pipeNode.physicsBody.contactTestBitMask = HEROTYPE
+		self.animate(pipeNode)
+		pipeNode
+	end
+
+	def self.createBottomPipeAtY(startY)
+		pipeNode = SKSpriteNode.spriteNodeWithImageNamed("RedPipe5.png")
+		pipeNode.position = CGPointMake(320, startY)
+		pipeNode.zPosition = 0
+		pipeNode.physicsBody = SKPhysicsBody.bodyWithRectangleOfSize(pipeNode.size)
+		pipeNode.physicsBody.dynamic = false
+		pipeNode.physicsBody.collisionBitMask = HEROTYPE
+		pipeNode.physicsBody.categoryBitMask = PIPETYPE
+		pipeNode.physicsBody.contactTestBitMask = HEROTYPE
+		
 		self.animate(pipeNode)
 		pipeNode
 	end

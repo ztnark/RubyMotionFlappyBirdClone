@@ -3,8 +3,9 @@ class EFCViewController < UIViewController
 		super
 
 		self.view = SKView.alloc.init
-		self.view.showsFPS = true
-		self.view.showsNodeCount = true
+		self.view.showsFPS = false
+		self.view.showsNodeCount = false
+		self.view.showsPhysics = true
 
 		scene = EFCMenuScene.alloc.initWithSize(UIScreen.mainScreen.bounds.size)
 		scene.scaleMode = SKSceneScaleModeAspectFill
